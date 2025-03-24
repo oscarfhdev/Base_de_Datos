@@ -19,3 +19,13 @@ INSERT INTO guerreros_z (nombre, raza, nivel_poder) VALUES
     ('Krilin', 'Humano', 4000);
 
 SELECT * FROM guerreros_z;
+
+SELECT nombre, nivel_poder
+FROM guerreros_z
+WHERE nivel_poder > 9000;
+
+
+SELECT nombre, raza
+FROM guerreros_z
+WHERE raza IN ('Saiyan', 'Humano');
+
