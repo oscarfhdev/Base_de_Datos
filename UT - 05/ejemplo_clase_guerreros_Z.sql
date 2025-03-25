@@ -1,9 +1,9 @@
 DROP DATABASE IF EXISTS guerreros_z;
-CREATE DATABASE IF NOT EXISTS guerreros_z;
+CREATE DATABASE guerreros_z;
 USE guerreros_z;
 
 
-CREATE TABLE IF NOT EXISTS guerreros_z(
+CREATE TABLE guerreros_z(
     id_guerrero INT AUTO_INCREMENT,
     nombre VARCHAR(50) NOT NULL,
     raza VARCHAR(50) NOT NULL,
