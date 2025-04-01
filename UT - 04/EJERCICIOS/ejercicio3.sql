@@ -56,4 +56,3 @@ CREATE TABLE Existencias(
     PRIMARY KEY (cod_articulo),
     FOREIGN KEY (cod_pub) REFERENCES Pub(cod_pub)
 );
-

@@ -1,0 +1,19 @@
+EJERCICIO 1:
+SELECT id, nombre, precio, id_fabricante FROM producto
+    WHERE id_fabricante = (SELECT id FROM fabricante WHERE nombre LIKE 'Lenovo');
+
+EJERCICIO 2:
+
+
+EJERCICIO 3:
+SELECT nombre FROM producto WHERE precio = (
+    SELECT MAX(precio) FROM producto WHERE id_fabricante = (
+        SELECT id from fabricante WHERE nombre LIKE 'Lenovo')
+    );
+
+EJERCICIO 5:
+
+EJERCICIO 6:
+SELECT * FROM producto 
+    WHERE precio > (SELECT AVG(precio) FROM producto WHERE id_fabricante = 1) 
+    AND id_fabricante = (SELECT id FROM fabricante WHERE nombre LIKE 'Asus');
