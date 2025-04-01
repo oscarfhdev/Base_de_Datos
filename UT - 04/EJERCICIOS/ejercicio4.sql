@@ -1,0 +1,14 @@
+DROP DATABASE IF EXISTS Taller;
+CREATE DATABASE Taller;
+USE Taller;
+
+CREATE TABLE Coches(
+    matricula VARCHAR(8) NOT NULL,
+    marca VARCHAR(15) NOT NULL,
+    an_fab INT NOT NULL CHECK(an_fab BETWEEN 1900 AND YEAR(CURDATE())),
+    modelo VARCHAR(15) NOT NULL
+);
+
+CREATE TABLE Mecanicos(
+
+);
