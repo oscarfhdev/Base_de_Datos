@@ -3,7 +3,9 @@ SELECT id, nombre, precio, id_fabricante FROM producto
     WHERE id_fabricante = (SELECT id FROM fabricante WHERE nombre LIKE 'Lenovo');
 
 EJERCICIO 2:
-
+    SELECT * FROM producto WHERE precio = (
+    SELECT MAX(precio) FROM producto WHERE id_fabricante = (
+        SELECT id FROM fabricante WHERE nombre LIKE('Lenovo')))
 
 EJERCICIO 3:
 SELECT nombre FROM producto WHERE precio = (
@@ -11,9 +13,31 @@ SELECT nombre FROM producto WHERE precio = (
         SELECT id from fabricante WHERE nombre LIKE 'Lenovo')
     );
 
+EJERCICIO 4:
+
+
 EJERCICIO 5:
+
 
 EJERCICIO 6:
 SELECT * FROM producto 
     WHERE precio > (SELECT AVG(precio) FROM producto WHERE id_fabricante = 1) 
     AND id_fabricante = (SELECT id FROM fabricante WHERE nombre LIKE 'Asus');
+
+EJERCICIO 7:
+SELECT * FROM producto
+WHERE precio >= ALL(SELECT precio FROM producto);
+
+EJERCICIO 8:
+SELECT * FROM producto
+WHERE precio <= ALL(SELECT precio FROM producto);
+
+EJERCICIO 9:
+
+
+EJERCICIO 10:
+
+
+EJERCICIO 11:
+SELECT nombre FROM fabricante WHERE id in (
+    SELECT id_fabricante FROM producto)
