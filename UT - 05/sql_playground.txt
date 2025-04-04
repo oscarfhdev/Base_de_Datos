@@ -14,10 +14,14 @@ SELECT nombre FROM producto WHERE precio = (
     );
 
 EJERCICIO 4:
-
+SELECT nombre FROM producto WHERE precio = (
+    SELECT MIN(precio) FROM producto WHERE id_fabricante = (
+        SELECT id FROM fabricante WHERE nombre LIKE('Hewlett-Packard')
+    )
+    );
 
 EJERCICIO 5:
-
+;
 
 EJERCICIO 6:
 SELECT * FROM producto 
