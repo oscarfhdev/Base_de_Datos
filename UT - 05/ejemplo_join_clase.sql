@@ -24,7 +24,7 @@ INSERT INTO guerreros_z (id_guerrero, nombre, raza, nivel_poder) VALUES
 CREATE TABLE tecnicas (
     id_tecnica INT PRIMARY KEY,
     nombre_tecnica VARCHAR(50) NOT NULL,
-    id_guerrero INT NOT NULL,
+    id_guerrero INT,
     FOREIGN KEY (id_guerrero) REFERENCES guerreros_z(id_guerrero) ON DELETE CASCADE
 );
 
@@ -62,3 +62,43 @@ ON guerreros_z.id_guerrero = tecnicas.id_guerrero;
 SELECT *
 FROM guerreros_z
 JOIN tecnicas;
+
+
+-- Left Join
+SELECT *
+FROM guerreros_z
+LEFT JOIN tecnicas
+ON guerreros_z.id_guerrero = tecnicas.id_guerrero;
+
+-- Left Join, solo me quedo con los null
+SELECT *
+FROM guerreros_z
+LEFT JOIN tecnicas
+ON guerreros_z.id_guerrero = tecnicas.id_guerrero;
+
+-- Right Join
+SELECT *
+FROM guerreros_z
+RIGHT JOIN tecnicas
+ON guerreros_z.id_guerrero = tecnicas.id_guerrero;
+
+-- Insertamos datos
+INSERT INTO tecnicas (id_tecnica, nombre_tecnica, id_guerrero)
+VALUES (8, 'Kaio-Ken Fantasma', NULL);
+
+-- Right Join para comprobar que todo sale null
+SELECT *
+FROM guerreros_z
+RIGHT JOIN tecnicas
+ON guerreros_z.id_guerrero = tecnicas.id_guerrero
+WHERE tecnicas.id_guerrero IS NULL;
+
+
+-- full outer join
+SELECT *
+FROM guerreros_z
+LEFT JOIN tecnicas ON guerreros_z.id_guerrero = tecnicas.id_guerrero
+UNION
+SELECT *
+FROM guerreros_z
+RIGHT JOIN tecnicas ON guerreros_z.id_guerrero = tecnicas.id_guerrero;
