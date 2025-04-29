@@ -33,24 +33,30 @@ SELECT * FROM producto WHERE precio >= (
 );
 
 EJERCICIO 6:
+Lista todos los productos del fabricante Asus que tienen un precio superior al precio medio de todos sus productos.
 SELECT * FROM producto 
     WHERE precio > (SELECT AVG(precio) FROM producto WHERE id_fabricante = 1) 
     AND id_fabricante = (SELECT id FROM fabricante WHERE nombre LIKE 'Asus');
 
 EJERCICIO 7:
+Devuelve el producto más caro que existe en la tabla producto sin hacer uso de MAX, ORDER BY ni LIMIT.
 SELECT * FROM producto
 WHERE precio >= ALL(SELECT precio FROM producto);
 
 EJERCICIO 8:
+Devuelve el producto más barato que existe en la tabla producto sin hacer uso de MIN, ORDER BY ni LIMIT.
 SELECT * FROM producto
 WHERE precio <= ALL(SELECT precio FROM producto);
 
 EJERCICIO 9:
+Devuelve los nombres de los fabricantes que tienen productos asociados. (Utilizando ALL o ANY).
 
 
 EJERCICIO 10:
+Devuelve los nombres de los fabricantes que no tienen productos asociados. (Utilizando ALL o ANY).
+
+
 
 
 EJERCICIO 11:
-SELECT nombre FROM fabricante WHERE id in (
-    SELECT id_fabricante FROM producto)
+Devuelve los nombres de los fabricantes que tienen productos asociados. (Utilizando IN o NOT IN).
