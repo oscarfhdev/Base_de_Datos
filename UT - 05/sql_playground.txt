@@ -21,7 +21,11 @@ SELECT nombre FROM producto WHERE precio = (
     );
 
 EJERCICIO 5:
-;
+SELECT * FROM producto WHERE precio >= (
+    SELECT MAX(precio) FROM producto WHERE id_fabricante = (
+        SELECT id FROM fabricante WHERE nombre LIKE('Lenovo')
+    )
+);
 
 EJERCICIO 6:
 SELECT * FROM producto 
