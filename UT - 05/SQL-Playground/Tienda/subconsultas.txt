@@ -1,19 +1,23 @@
 EJERCICIO 1:
+Devuelve todos los productos del fabricante Lenovo. (Sin utilizar INNER JOIN).
 SELECT id, nombre, precio, id_fabricante FROM producto
     WHERE id_fabricante = (SELECT id FROM fabricante WHERE nombre LIKE 'Lenovo');
 
 EJERCICIO 2:
+Devuelve todos los datos de los productos que tienen el mismo precio que el producto más caro del fabricante Lenovo. (Sin utilizar INNER JOIN).
     SELECT * FROM producto WHERE precio = (
     SELECT MAX(precio) FROM producto WHERE id_fabricante = (
         SELECT id FROM fabricante WHERE nombre LIKE('Lenovo')))
 
 EJERCICIO 3:
+Lista el nombre del producto más caro del fabricante Lenovo.
 SELECT nombre FROM producto WHERE precio = (
     SELECT MAX(precio) FROM producto WHERE id_fabricante = (
         SELECT id from fabricante WHERE nombre LIKE 'Lenovo')
     );
 
 EJERCICIO 4:
+Lista el nombre del producto más barato del fabricante Hewlett-Packard.
 SELECT nombre FROM producto WHERE precio = (
     SELECT MIN(precio) FROM producto WHERE id_fabricante = (
         SELECT id FROM fabricante WHERE nombre LIKE('Hewlett-Packard')
@@ -21,6 +25,7 @@ SELECT nombre FROM producto WHERE precio = (
     );
 
 EJERCICIO 5:
+Devuelve todos los productos de la base de datos que tienen un precio mayor o igual al producto más caro del fabricante Lenovo.
 SELECT * FROM producto WHERE precio >= (
     SELECT MAX(precio) FROM producto WHERE id_fabricante = (
         SELECT id FROM fabricante WHERE nombre LIKE('Lenovo')
