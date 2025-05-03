@@ -52,3 +52,22 @@ CREATE TABLE Facturas(
     PRIMARY KEY (id_factura),
     FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente)
 );
+
+ALTER TABLE Coches
+MODIFY COLUMN modelo VARCHAR(20) NOT NULL;
+
+DESCRIBE Coches;
+
+
+ALTER TABLE Trabajos
+DROP COLUMN id;
+
+ALTER TABLE Trabajos
+ADD PRIMARY KEY (mat,dni);
+
+DESCRIBE Trabajos;
+
+ALTER TABLE Coches
+MODIFY COLUMN an_fab INT NOT NULL CHECK(an_fab BETWEEN 00 AND 99);
+
+DESCRIBE Coches
