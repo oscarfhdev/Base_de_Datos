@@ -70,5 +70,24 @@ GROUP BY categoria
 ORDER BY valorstock DESC
 LIMIT 1;
 
+
 -- 6. Encuentra el promedio del precio unitario de todos los productos.
 SELECT AVG(precio_unitario) as promedio_de_precio_unitario FROM productos;
+
+
+-- 7. Encuentra todos los productos cuyo nombre comienza con “A” y su stock es mayor a 0.
+SELECT * 
+FROM productos
+WHERE nombre_producto LIKE 'A%' AND stock > 0;
+
+
+-- 8. Encuentra todos los productos que no pertenecen a la categoría Alimentos y su precio unitario es inferior a 50 euros.
+SELECT * 
+FROM productos
+-- WHERE categoria NOT IN ('Alimentos') AND precio_unitario < 50; opción válida
+WHERE categoria <> 'Alimentos' AND precio_unitario < 50;
+
+-- 9. Encuentra todos los productos cuya cantidad en stock es un número par.
+SELECT * 
+FROM productos
+WHERE stock % 2 = 0; -- Todos los números pares divididos entre dos, tienen resto 0.
