@@ -44,3 +44,15 @@ INSERT INTO productos VALUES
 (30, 'Gorra', 'Ropa', 50, 9.99);
 
 SELECT * FROM productos;
+
+
+-- 1. Encuentra todos los productos cuyo stock es menor a 10 unidades.
+SELECT * FROM productos WHERE stock < 10;
+
+
+-- 2. Encuentra todos los productos cuya categoría es Electrónica o Ropa.
+SELECT * FROM productos WHERE categoria IN ('Electrónica', 'Ropa');
+
+
+-- 3. Encuentra todos los productos cuyo precio unitario es mayor a 100 euros.
+SELECT * FROM productos WHERE precio_unitario > 100;
