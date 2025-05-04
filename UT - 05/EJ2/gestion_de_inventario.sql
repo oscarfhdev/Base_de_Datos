@@ -56,3 +56,19 @@ SELECT * FROM productos WHERE categoria IN ('Electrónica', 'Ropa');
 
 -- 3. Encuentra todos los productos cuyo precio unitario es mayor a 100 euros.
 SELECT * FROM productos WHERE precio_unitario > 100;
+
+-- 4. Encuentra el producto con el precio unitario más alto.
+SELECT * FROM productos WHERE precio_unitario = (
+    SELECT MAX(precio_unitario) FROM productos
+    );
+
+-- 5. Encuentra la categoría con el mayor valor total de stock.
+SELECT categoria, 
+    SUM(stock * precio_unitario) as valorstock
+FROM productos
+GROUP BY categoria
+ORDER BY valorstock DESC
+LIMIT 1;
+
+-- 6. Encuentra el promedio del precio unitario de todos los productos.
+SELECT AVG(precio_unitario) as promedio_de_precio_unitario FROM productos;
