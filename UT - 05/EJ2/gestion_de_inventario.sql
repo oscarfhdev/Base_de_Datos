@@ -91,3 +91,23 @@ WHERE categoria <> 'Alimentos' AND precio_unitario < 50;
 SELECT * 
 FROM productos
 WHERE stock % 2 = 0; -- Todos los números pares divididos entre dos, tienen resto 0.
+
+
+-- 10. Encuentra todos los productos cuya categoría no contiene la palabra “Herramientas”.
+SELECT * 
+FROM productos
+WHERE categoria NOT IN ('Herramientas');
+
+
+-- 11. Encuentra todos los productos cuyo precio unitario está dentro del rango de 50 a 100 euros.
+SELECT * 
+FROM productos
+WHERE precio_unitario BETWEEN 50 AND 100; 
+
+
+-- 12. Encuentra el producto con la cantidad de stock más baja.
+SELECT * 
+FROM productos
+WHERE stock = (
+    SELECT MIN(stock) FROM productos);
+
