@@ -58,3 +58,46 @@ SELECT * FROM producto p
 JOIN fabricante f ON p.id_fabricante = f.id
 WHERE f.nombre = 'Crucial' AND p.precio > 200;
 
+
+EJERCICIO 8:
+Devuelve un listado con todos los productos de los fabricantes Asus, Hewlett-Packardy Seagate. Sin utilizar el operador IN.
+SELECT * FROM producto p
+JOIN fabricante f ON p.id_fabricante = f.id
+WHERE f.nombre = 'Asus' OR f.nombre = 'Hewlett-Packard' OR f.nombre= 'Seagate';
+
+
+EJERCICIO 9:
+Devuelve un listado con todos los productos de los fabricantes Asus, Hewlett-Packardy Seagate. Utilizando el operador IN.
+SELECT * FROM producto p
+JOIN fabricante f ON p.id_fabricante = f.id
+WHERE f.nombre IN ('Asus', 'Hewlett-Packard', 'Seagate');
+
+
+EJERCICIO 10:
+Devuelve un listado con el nombre y el precio de todos los productos de los fabricantes cuyo nombre termine por la vocal e.
+SELECT * FROM producto p
+JOIN fabricante f ON p.id_fabricante = f.id
+WHERE f.nombre LIKE '%e';
+
+
+EJERCICIO 11:
+Devuelve un listado con el nombre y el precio de todos los productos cuyo nombre de fabricante contenga el carácter w en su nombre.
+SELECT * FROM producto p 
+JOIN fabricante f ON p.id_fabricante = f.id
+WHERE f.nombre LIKE '%w%';
+
+
+EJERCICIO 12:
+Devuelve un listado con el nombre de producto, precio y nombre de fabricante, de todos los productos que tengan un precio mayor o igual a 180€. Ordene el resultado en primer lugar por el precio (en orden descendente) y en segundo lugar por el nombre (en orden ascendente)
+SELECT p.*, f.id, f.nombre FROM producto p
+JOIN fabricante f ON p.id_fabricante = f.id
+WHERE p.precio >= 180
+ORDER BY p.precio DESC, p.nombre;
+
+
+
+EJERCICIO 13:
+Devuelve un listado con el identificador y el nombre de fabricante, solamente de aquellos fabricantes que tienen productos asociados en la base de datos.
+SELECT DISTINCT f.* FROM fabricante f
+JOIN producto p ON p.id_fabricante = f.id;
+
