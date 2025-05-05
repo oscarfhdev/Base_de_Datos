@@ -129,3 +129,20 @@ SELECT * FROM productos
 WHERE precio_unitario = (
     SELECT precio_unitario FROM productos WHERE id_producto = 30
 );
+
+
+-- 16. Encuentra todos los productos cuyo nombre contiene una ‘a’ y una ‘e’ (en cualquier orden).
+SELECT * FROM productos
+WHERE nombre_producto LIKE '%a%' and nombre_producto LIKE '%e%';
+
+
+-- 17. Encuentra todos los productos que tienen el mismo nombre de categoría que otro producto.
+SELECT * FROM productos
+WHERE categoria = (
+    SELECT categoria FROM productos WHERE id_producto = 20
+);
+
+
+-- 18. Encuentra todos los productos cuyo nombre es más largo que su categoría.
+SELECT * FROM productos
+WHERE CHAR_LENGTH(nombre_producto) > CHAR_LENGTH(categoria);
