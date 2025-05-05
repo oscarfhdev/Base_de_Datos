@@ -111,3 +111,21 @@ FROM productos
 WHERE stock = (
     SELECT MIN(stock) FROM productos);
 
+
+-- 13. Encuentra la categoría con el menor valor total de stock.
+SELECT categoria, SUM(stock * precio_unitario) as valortotal
+FROM productos
+GROUP BY categoria
+ORDER BY categoria DESC;
+
+-- 14. Encuentra el número total de productos en cada categoría.
+SELECT categoria, COUNT(*) AS totalproductos
+FROM productos
+GROUP BY categoria;
+
+
+-- 15. Encuentra todos los productos que tienen el mismo precio unitario que otro producto.
+SELECT * FROM productos
+WHERE precio_unitario = (
+    SELECT precio_unitario FROM productos WHERE id_producto = 30
+);
