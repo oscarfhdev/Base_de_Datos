@@ -1,0 +1,63 @@
+EJERCICIO 1:
+Lista el nombre de todos los productos que hay en la tabla producto.
+SELECT nombre FROM producto;
+
+
+EJERCICIO 2:
+Lista los nombres y los precios de todos los productos de la tabla producto.
+SELECT nombre, precio FROM producto;
+
+
+EJERCICIO 3:
+Lista todas las columnas de la tabla producto.
+SELECT * FROM producto;
+
+
+EJERCICIO 4:
+Lista el nombre de los productos, el precio en euros y el precio en dólares estadounidenses (USD).
+SELECT nombre, precio, (precio*1.15) as precioendolares FROM producto;
+
+
+EJERCICIO 5:
+Lista el nombre de los productos, el precio en euros y el precio en dólares estadounidenses (USD). Utiliza los siguientes alias para las columnas: nombre de producto, euros, dólares.
+SELECT nombre AS nombr_de_producto, precio AS euros, (precio*1.15) AS dolares FROM producto;
+
+
+EJERCICIO 6:
+Lista los nombres y los precios de todos los productos de la tabla producto, convirtiendo los nombres a mayúscula.
+SELECT UPPER(nombre), UPPER(precio)FROM producto;
+
+
+EJERCICIO 7:
+Lista los nombres y los precios de todos los productos de la tabla producto, convirtiendo los nombres a minúscula.
+SELECT LOWER(nombre), LOWER(precio)FROM producto;
+
+EJERCICIO 8:
+Lista el nombre de todos los fabricantes en una columna, y en otra columna obtenga en mayúsculas los dos primeros caracteres del nombre del fabricante.
+SELECT nombre, UPPER(SUBSTR(nombre, 1, 2)) FROM fabricante;
+
+
+EJERCICIO 9:
+Lista los nombres y los precios de todos los productos de la tabla producto, redondeando el valor del precio.
+SELECT nombre, ROUND(precio) FROM producto;
+
+
+EJERCICIO 10:
+Lista los nombres y los precios de todos los productos de la tabla producto, truncando el valor del precio para mostrarlo sin ninguna cifra decimal.
+SELECT nombre, TRUNCATE(precio, 0) FROM producto;
+
+
+EJERCICIO 11:
+Lista el código de los fabricantes que tienen productos en la tabla producto.
+SELECT id_fabricante FROM producto;
+
+
+EJERCICIO 12:
+Lista el código de los fabricantes que tienen productos en la tabla producto, eliminando los códigos que aparecen repetidos.
+SELECT DISTINCT id_fabricante FROM producto;
+
+
+EJERCICIO 13:
+Lista los nombres de los fabricantes ordenados de forma ascendente.
+
+
