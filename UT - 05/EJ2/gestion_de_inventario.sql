@@ -119,7 +119,7 @@ GROUP BY categoria
 ORDER BY categoria DESC;
 
 -- 14. Encuentra el número total de productos en cada categoría.
-SELECT categoria, COUNT(*) AS totalproductos
+SELECT categoria, COUNT(categoria) AS totalproductos
 FROM productos
 GROUP BY categoria;
 
