@@ -146,3 +146,13 @@ WHERE categoria = (
 -- 18. Encuentra todos los productos cuyo nombre es más largo que su categoría.
 SELECT * FROM productos
 WHERE CHAR_LENGTH(nombre_producto) > CHAR_LENGTH(categoria);
+
+
+-- 19. Encuentra todos los productos cuyo precio unitario es un número entero.
+SELECT * FROM productos
+WHERE (precio_unitario%1) = 0;
+
+
+-- 20. Encuentra el producto con el mayor valor total (stock * precio_unitario).
+SELECT * FROM productos
+WHERE precio_unitario*stock = (SELECT MAX(precio_unitario * stock) FROM productos);
