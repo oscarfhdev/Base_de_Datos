@@ -1,0 +1,60 @@
+EJERCICIO 1:
+Devuelve una lista con el nombre del producto, precio y nombre de fabricante de todos los productos de la base de datos.
+-- SELECT nombre, precio, (
+--    SELECT nombre FROM fabricante WHERE fabricante.id = producto.id_fabricante
+-- )
+-- FROM producto;
+
+SELECT p.nombre, p.precio, f.nombre AS nombre_fabricante
+FROM producto p
+JOIN fabricante f
+ON f.id = p.id_fabricante;
+
+
+EJERCICIO 2:
+Devuelve una lista con el nombre del producto, precio y nombre de fabricante de todos los productos de la base de datos. Ordene el resultado por el nombre del fabricante, por orden alfabético.
+SELECT nombre, precio, (
+    SELECT nombre FROM fabricante WHERE producto.id_fabricante = fabricante.id
+) as nombre_fabricante
+FROM producto
+ORDER BY nombre_fabricante;
+
+
+EJERCICIO 3:
+SELECT p.id, p.nombre, f.id, f.nombre
+FROM producto p
+JOIN fabricante f ON f.id = p.id_fabricante;
+
+
+EJERCICIO 4:
+Devuelve el nombre del producto, su precio y el nombre de su fabricante, del producto más barato.
+SELECT p.nombre, p.precio, f.nombre
+FROM producto p
+JOIN fabricante f ON p.id_fabricante = f.id
+WHERE p.precio = (
+    SELECT MIN(precio) FROM producto
+)
+
+
+EJERCICIO 5:
+SELECT p.nombre, p.precio, f.nombre
+FROM producto p
+JOIN fabricante f ON p.id_fabricante = f.id
+WHERE p.precio = (
+    SELECT MAX(precio) FROM producto    
+);
+
+
+EJERCICIO 6:
+Devuelve una lista de todos los productos del fabricante Lenovo.
+SELECT * FROM producto
+JOIN fabricante ON producto.id_fabricante = fabricante.id
+WHERE fabricante.nombre = 'Lenovo';
+
+
+EJERCICIO 7:
+Devuelve una lista de todos los productos del fabricante Crucial que tengan un precio mayor que 200€.
+SELECT * FROM producto p
+JOIN fabricante f ON p.id_fabricante = f.id
+WHERE f.nombre = 'Crucial' AND p.precio > 200;
+
