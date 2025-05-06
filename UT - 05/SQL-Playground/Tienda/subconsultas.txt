@@ -7,7 +7,7 @@ EJERCICIO 2:
 Devuelve todos los datos de los productos que tienen el mismo precio que el producto más caro del fabricante Lenovo. (Sin utilizar INNER JOIN).
     SELECT * FROM producto WHERE precio = (
     SELECT MAX(precio) FROM producto WHERE id_fabricante = (
-        SELECT id FROM fabricante WHERE nombre LIKE('Lenovo')))
+        SELECT id FROM fabricante WHERE nombre LIKE('Lenovo')));
 
 EJERCICIO 3:
 Lista el nombre del producto más caro del fabricante Lenovo.
@@ -50,13 +50,96 @@ WHERE precio <= ALL(SELECT precio FROM producto);
 
 EJERCICIO 9:
 Devuelve los nombres de los fabricantes que tienen productos asociados. (Utilizando ALL o ANY).
-
+SELECT nombre from fabricante WHERE id = ANY (
+    SELECT DISTINCT id_fabricante FROM producto
+    )
 
 EJERCICIO 10:
 Devuelve los nombres de los fabricantes que no tienen productos asociados. (Utilizando ALL o ANY).
-
-
+SELECT nombre from fabricante WHERE id != ALL (
+    SELECT DISTINCT id_fabricante FROM producto
+    )
 
 
 EJERCICIO 11:
 Devuelve los nombres de los fabricantes que tienen productos asociados. (Utilizando IN o NOT IN).
+SELECT nombre FROM fabricante WHERE id IN (
+    SELECT DISTINCT id_fabricante FROM producto
+    );
+
+
+EJERCICIO 12:
+Devuelve los nombres de los fabricantes que no tienen productos asociados. (Utilizando IN o NOT IN).
+SELECT nombre FROM fabricante WHERE id NOT IN (
+    SELECT DISTINCT id_fabricante FROM producto
+    );
+
+
+EJERCICIO 13:
+Devuelve los nombres de los fabricantes que tienen productos asociados. (Utilizando EXISTS o NOT EXISTS).
+SELECT nombre 
+FROM fabricante f
+WHERE EXISTS (
+    SELECT 1 
+    FROM producto p 
+    WHERE p.id_fabricante = f.id
+);
+
+
+EJERCICIO 14:
+Devuelve los nombres de los fabricantes que no tienen productos asociados. (Utilizando EXISTS o NOT EXISTS).
+SELECT nombre 
+FROM fabricante f
+WHERE EXISTS (
+    SELECT 1 
+    FROM producto p 
+    WHERE p.id_fabricante = f.id
+);
+
+
+EJERCICIO 15:
+Lista el nombre de cada fabricante con el nombre y el precio de su producto más caro.
+SELECT p.nombre, p.precio, f.nombre
+FROM producto p
+JOIN fabricante f ON f.id = p.id_fabricante
+WHERE p.precio = (
+    SELECT MAX(p2.precio)
+    FROM producto p2
+    WHERE p2.id_fabricante = p.id_fabricante
+);
+
+
+EJERCICIO 16:
+Devuelve un listado de todos los productos que tienen un precio mayor o igual a la media de todos los productos de su mismo fabricante.
+SELECT * 
+FROM producto p
+WHERE p.precio >= (
+    SELECT AVG(p2.precio)
+    FROM producto p2
+    WHERE p2.id_fabricante = p.id_fabricante
+);
+
+
+EJERCICIO 17:
+Lista el nombre del producto más caro del fabricante Lenovo.
+SELECT nombre FROM producto WHERE precio = (
+    SELECT MAX(precio) FROM producto WHERE id_fabricante =  (
+            SELECT id FROM fabricante WHERE nombre = 'Lenovo'
+    )
+)
+
+
+EJERCICIO 18:
+Devuelve un listado con todos los nombres de los fabricantes que tienen el mismo número de productos que el fabricante Lenovo.
+SELECT f.nombre, COUNT(*) AS numero_productos
+FROM producto p
+JOIN fabricante f ON p.id_fabricante = f.id
+GROUP BY f.nombre
+HAVING COUNT(*) = (
+    SELECT COUNT(*) 
+    FROM producto 
+    WHERE id_fabricante = (
+        SELECT id FROM fabricante WHERE nombre = 'Lenovo'
+    )
+);
+
